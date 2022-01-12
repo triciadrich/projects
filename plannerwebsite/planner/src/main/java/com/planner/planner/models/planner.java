@@ -11,7 +11,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +22,7 @@ import java.util.Date;
 public class planner {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
   @NotNull
   private String name;
   @NotNull
@@ -44,53 +43,51 @@ public class planner {
   @Column(updatable = false)
   private Date createdAt;
   private Date updatedAt;
-
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   private user user;
+  public user getUser() {
+    return user;
+  }
+
+  public void setUser(user user) {
+    this.user = user;
+  }
 
   public planner() {
   }
 
-  public user getUser() {
-  return user;
-  }
-
-  public void setUser(user user) {
-  this.user = user;
-  }
-
   public planner(@NotNull String name, @NotNull String type, Integer notes,
-  @NotNull Double price,
-  @NotNull String dimensions, @NotNull String brand, @NotNull String img,
-  @NotNull String link,
-  @NotNull String desc) {
-  this.name = name;
-  this.type = type;
-  this.notes = notes;
-  this.price = price;
-  this.dimensions = dimensions;
-  this.brand = brand;
-  this.img = img;
-  this.link = link;
-  this.desc = desc;
+      @NotNull Double price,
+      @NotNull String dimensions, @NotNull String brand, @NotNull String img,
+      @NotNull String link,
+      @NotNull String desc) {
+    this.name = name;
+    this.type = type;
+    this.notes = notes;
+    this.price = price;
+    this.dimensions = dimensions;
+    this.brand = brand;
+    this.img = img;
+    this.link = link;
+    this.desc = desc;
   }
 
   @PrePersist
   protected void onCreate() {
-  this.createdAt = new Date();
+    this.createdAt = new Date();
   }
 
   @PreUpdate
   protected void onUpdate() {
-  this.updatedAt = new Date();
+    this.updatedAt = new Date();
   }
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -103,82 +100,82 @@ public class planner {
   }
 
   public String getType() {
-  return type;
+    return type;
   }
 
   public void setType(String type) {
-  this.type = type;
+    this.type = type;
   }
 
   public Integer getNotes() {
-  return notes;
+    return notes;
   }
 
   public void setNotes(Integer notes) {
-  this.notes = notes;
+    this.notes = notes;
   }
 
   public Double getPrice() {
-  return price;
+    return price;
   }
 
   public void setPrice(Double price) {
-  this.price = price;
+    this.price = price;
   }
 
   public String getDimensions() {
-  return dimensions;
+    return dimensions;
   }
 
   public void setDimensions(String dimensions) {
-  this.dimensions = dimensions;
+    this.dimensions = dimensions;
   }
 
   public String getBrand() {
-  return brand;
+    return brand;
   }
 
   public void setBrand(String brand) {
-  this.brand = brand;
+    this.brand = brand;
   }
 
   public String getImg() {
-  return img;
+    return img;
   }
 
   public void setImg(String img) {
-  this.img = img;
+    this.img = img;
   }
 
   public String getLink() {
-  return link;
+    return link;
   }
 
   public void setLink(String link) {
-  this.link = link;
+    this.link = link;
   }
 
   public String getDesc() {
-  return desc;
+    return desc;
   }
 
   public void setDesc(String desc) {
-  this.desc = desc;
+    this.desc = desc;
   }
 
   public Date getCreatedAt() {
-  return createdAt;
+    return createdAt;
   }
 
   public void setCreatedAt(Date createdAt) {
-  this.createdAt = createdAt;
+    this.createdAt = createdAt;
   }
 
   public Date getUpdatedAt() {
-  return updatedAt;
+    return updatedAt;
   }
 
   public void setUpdatedAt(Date updatedAt) {
-  this.updatedAt = updatedAt;
+    this.updatedAt = updatedAt;
   }
 }
