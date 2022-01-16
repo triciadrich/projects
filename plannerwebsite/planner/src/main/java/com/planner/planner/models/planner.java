@@ -39,7 +39,7 @@ public class planner {
   @NotNull
   private String link;
   @NotNull
-  private String desc;
+  private String description;
   @Column(updatable = false)
   private Date createdAt;
   private Date updatedAt;
@@ -61,7 +61,7 @@ public class planner {
       @NotNull Double price,
       @NotNull String dimensions, @NotNull String brand, @NotNull String img,
       @NotNull String link,
-      @NotNull String desc) {
+      @NotNull String description) {
     this.name = name;
     this.type = type;
     this.notes = notes;
@@ -70,7 +70,7 @@ public class planner {
     this.brand = brand;
     this.img = img;
     this.link = link;
-    this.desc = desc;
+    this.description = description;
   }
 
   @PrePersist
@@ -155,12 +155,12 @@ public class planner {
     this.link = link;
   }
 
-  public String getDesc() {
-    return desc;
+  public String getDescription() {
+    return description;
   }
 
-  public void setDesc(String desc) {
-    this.desc = desc;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public Date getCreatedAt() {

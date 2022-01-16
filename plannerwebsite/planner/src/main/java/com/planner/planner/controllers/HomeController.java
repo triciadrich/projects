@@ -2,6 +2,8 @@ package com.planner.planner.controllers;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,8 +38,9 @@ public class HomeController {
   }
 
   @RequestMapping("/")
-  public String index(){
-    
+  public String index(@ModelAttribute("planner") planner planner, Model model){
+    List<planner> planners = this.plannerService.getAllPlanners();
+    model.addAttribute("planners", planners);
     return "index.jsp";
   }
 
@@ -72,6 +76,9 @@ public class HomeController {
 
 @GetMapping("/account")
 public String accountPage(@ModelAttribute("user") user user,@ModelAttribute("planner")planner planner, HttpSession session, Model model){
+  if (session.getAttribute("userId") == null){
+    return "loginreg.jsp";
+  }
   Long userId =(Long) session.getAttribute("userId");
   user u = uService.findUserById(userId);
   model.addAttribute("user", u);
@@ -90,4 +97,9 @@ public String addPlanner(@Valid @ModelAttribute("planner") planner planner, Bind
   return "redirect:/";
 }
  
+  @GetMapping("/details/{id}")
+    public String plannerDetail(@PathVariable("id") Long id, @ModelAttribute("planner") planner planner, Model model){
+      model.addAttribute("planner", this.plannerService.getOnePlanner(id));
+      return "detail.jsp";
+    }
 }
