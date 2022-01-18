@@ -29,6 +29,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <title>Document</title>
 </head>
 <body>
+  <div class="wrapper">
   <nav>
     <div class="deep-purple nav-wrapper">
       <a href="/" class="brand-logo">Solace in Planning </a>
@@ -52,30 +53,30 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
 </div>
 <h3>Welcome, ${user.userName}</h3>
-<h4>Add a planner</h4>
+<h4>Add a Planner</h4>
     
     <form:form method="POST" action="/addPlanner" modelAttribute="planner">
         <p>
         	<form:label path="name">Name</form:label>
-        	<form:errors path="name"/>
-          <form:input type="name" path="name"/>
+        	<form:errors path="name"/>  
+          <form:input type="text" path="name"/>
         	
         </p>
         <p>
         	<form:label path="notes">Notes pages</form:label>
         	<form:errors path="notes"/>
-          <form:input type="notes" path="notes"/>
+          <form:input type="text" path="notes"/>
         	
         </p>
         <p>
         	<form:label path="price">Price</form:label>
         	<form:errors path="price"/>
-          <form:input type="price" path="price"/>
+          <form:input type="text" path="price"/>
         	
         </p>
-        <div class="input-field col s12"></div>
+      
 
-           <select path ="type">
+           <select class="browser-default" path ="type">
              <option value="" disabled selected>Choose a type</option>
              <option value ="daily">Daily</option>
              <option value ="weekly">Weekly</option>
@@ -85,42 +86,43 @@ uri="http://java.sun.com/jsp/jstl/core" %>
              <option value ="other">other</option>
             </select>
         <label>Type</label>
-          </div>
+      
         <p>
         	<form:label path="dimensions">Dimensions</form:label>
         	<form:errors path="dimensions"/>
-          <form:input type="dimensions" path="dimensions"/>
+          <form:input type="text" path="dimensions"/>
         	
         </p>
         <p>
         	<form:label path="brand">Brand</form:label>
         	<form:errors path="brand"/>
-          <form:input type="brand" path="brand"/>
+          <form:input type="text" path="brand"/>
         	
         </p>
         <p>
         	<form:label path="img">Image Url</form:label>
         	<form:errors path="img"/>
-          <form:input type="img" path="img"/>
+          <form:input type="text" path="img"/>
         	
         </p>
         <p>
         	<form:label path="link">Link to planner</form:label>
         	<form:errors path="link"/>
-          <form:input type="link" path="link"/>
+          <form:input type="text" path="link"/>
         	
         </p>
         <p>
             <form:label path="description">Description</form:label>
             <form:errors path="description"/>
-            <form:input type="description" path="description"/>
+            <form:input type="text" path="description"/>
         </p>
 
-        <input type="submit" value="Submit"/>
+        <button class="deep-purple btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
     </form:form>
-  </div>
-
-
   
+
+
+</div>
 </body>
 </html>

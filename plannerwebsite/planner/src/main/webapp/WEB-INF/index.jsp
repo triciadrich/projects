@@ -55,7 +55,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     </div>
     <div class="allplanners">
       <c:forEach items="${planners}" var ="planner">
-        <a href="/details/${planner.id}"><img class= "show" src="${planner.img}"></a>
+        <div class="display">
+        <a href="/details/${planner.id}">${planner.brand} ${planner.name}<img class= "show" src="${planner.img}"></a>
+        </div>
       </c:forEach>
 
     </div>
