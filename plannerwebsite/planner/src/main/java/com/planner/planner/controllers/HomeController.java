@@ -1,5 +1,6 @@
 package com.planner.planner.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
+	private ArrayList<Object> compare = new ArrayList<Object>(); 
   private final PlannerService plannerService;
   private final UserService uService;
   private final EmailValidator emailValid;
@@ -98,17 +100,61 @@ public class HomeController {
   }
 
   @GetMapping("/details/{id}")
-  public String plannerDetail(@PathVariable("id") Long id, @ModelAttribute("planner") planner planner,
-      @ModelAttribute("user") user user, Model model, HttpSession session) {
+  public String plannerDetail(@PathVariable("id") Long id, @ModelAttribute("user") user user, Model model, HttpSession session) {
+	 if(session.getAttribute("userId") == null) { 
+		model.addAttribute("planner", this.plannerService.getOnePlanner(id));
+		 return "detail.jsp";
+	 } else {
    
-    model.addAttribute("user", this.uService.findUserById(id));
+    model.addAttribute("user", this.uService.findUserById((Long) session.getAttribute("userId")));
     model.addAttribute("planner", this.plannerService.getOnePlanner(id));
     return "detail.jsp";
+	 }
   }
 
   @GetMapping("/edit/{id}")
   public String edit(@PathVariable("id") Long id, @ModelAttribute("planner") planner planner, Model model) {
     model.addAttribute("planner", this.plannerService.getOnePlanner(id));
     return "edit.jsp";
+    
+  }
+  
+  @PostMapping("/edit/{id}")
+  	public String editPlanner(@Valid @ModelAttribute("planner") planner planner, BindingResult result, @PathVariable("id") Long id, Model model) {
+	  if (result.hasErrors()) {
+		  model.addAttribute("planner", this.plannerService.getOnePlanner(id));
+		  return "edit.jsp";
+	  }
+	  this.plannerService.editPlanner(planner);
+	  return "/details/{id}";
+  }
+  		
+  @GetMapping("/logout")
+	  public String logout(HttpSession session) {
+	  		session.invalidate();
+		  return "redirect:/";
+  }
+  
+  @GetMapping("/delete/{id}")
+  	public String delete(@PathVariable("id") Long id, Model model) {
+	  	this.plannerService.deletePlanner(id);
+	  	return "redirect:/";
+  }
+  
+  @PostMapping("/compare/{id}")
+  	public String compare(@PathVariable("id") Long id, @RequestParam(value = "addcompare", required=false)String checkval) {
+	  
+	  if(checkval != null) {
+		  compare.add(this.plannerService.getOnePlanner(id));
+		  System.out.println(compare);
+		  return "redirect:/details/{id}";
+	  }
+	  else {
+		  System.out.println("not checked");
+	  }
+	  return "redirect:/details/{id}";
   }
 }
+  
+  
+

@@ -33,7 +33,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 
 <div class="wrapper">
-  <div class="wrapper">
+  
     <nav>
       <div class="deep-purple nav-wrapper">
         <a href="/" class="brand-logo">Solace in Planning </a>
@@ -42,6 +42,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   
           <li><a href="/account">Account</a></li>
           <li><a href="/loginreg">Login|Register</a></li>
+          <li><a href="/logout">Logout</a></li>
           
         </ul>
       </div>
@@ -53,6 +54,75 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>
+        
+        <form:form method="POST" action="/edit/${planner.id}" modelAttribute="planner">
+        <p>
+        	<form:label path="name">Name</form:label>
+        	<form:errors path="name"/>  
+          <form:input type="text" path="name"/>
+        	
+        </p>
+        <p>
+        	<form:label path="notes">Notes pages</form:label>
+        	<form:errors path="notes"/>
+          <form:input type="text" path="notes"/>
+        	
+        </p>
+        <p>
+        	<form:label path="price">Price</form:label>
+        	<form:errors path="price"/>
+          <form:input type="text" path="price"/>
+        	
+        </p>
+      
+
+           <select class="browser-default" path ="type">
+             <option value="" disabled selected>Choose a type</option>
+             <option value ="daily">Daily</option>
+             <option value ="weekly">Weekly</option>
+             <option value ="monthly">Monthly</option>
+             <option value ="all">All in one</option>
+             <option value ="digital">Digital</option>
+             <option value ="other">other</option>
+            </select>
+        <label>Type</label>
+      
+        <p>
+        	<form:label path="dimensions">Dimensions</form:label>
+        	<form:errors path="dimensions"/>
+          <form:input type="text" path="dimensions"/>
+        	
+        </p>
+        <p>
+        	<form:label path="brand">Brand</form:label>
+        	<form:errors path="brand"/>
+          <form:input type="text" path="brand"/>
+        	
+        </p>
+        <p>
+        	<form:label path="img">Image Url</form:label>
+        	<form:errors path="img"/>
+          <form:input type="text" path="img"/>
+        	
+        </p>
+        <p>
+        	<form:label path="link">Link to planner</form:label>
+        	<form:errors path="link"/>
+          <form:input type="text" path="link"/>
+        	
+        </p>
+        <p>
+            <form:label path="description">Description</form:label>
+            <form:errors path="description"/>
+            <form:input type="text" path="description"/>
+        </p>
+
+        <button class="deep-purple btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i></button>
+          <button class="deep-purple btn waves-effect waves-light"> <a href="/delete/${planner.id}">Delete</a>
+          <i class="material-icons right">send</i></button>
+    </form:form>
+  
 </div>
 </body>
 </html>
