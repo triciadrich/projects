@@ -66,9 +66,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <p>
       <label>
       
-        <input type="checkbox" name="addcompare" />
-        <span>Add To compare</span>
+        
+        <input type="submit" value="Add to Compare"/>
+      
       </label>
+      <a href="/compare">Go to compare</a>
     </p></li>
           <li>
             <c:choose>
