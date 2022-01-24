@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
-  private ArrayList<Object> compare = new ArrayList<Object>();
+  private ArrayList<planner> compare = new ArrayList<planner>();
   private final PlannerService plannerService;
   private final UserService uService;
 
@@ -143,9 +143,9 @@ public class HomeController {
 
   @PostMapping("/compare/{id}")
   public String compare(@PathVariable("id") Long id) {
-
+    
     compare.add(this.plannerService.getOnePlanner(id));
-    System.out.println(compare);
+
     return "redirect:/details/{id}";
 
   }
@@ -153,15 +153,23 @@ public class HomeController {
   @GetMapping("/compare")
   public String comparePage(Model model) {
     model.addAttribute("compare", compare);
-    System.out.println(compare);
+
     return "compare.jsp";
   }
 
   @GetMapping("/removecom/{id}")
-  public String removeCom(@PathVariable("id") Long id) {
-    compare.remove(compare.contains("id"));
+  public String removeCom(@PathVariable("id") Long id, @ModelAttribute("planner") planner planner) {
+    System.out.println(id);
 
-    return "/compare";
+    for (int i = 0; i < compare.size(); i++) {
+      planner p = compare.get(i);
+      if (p.getId() == id) {
+
+        compare.remove(i);
+      }
+    }
+
+    return "redirect:/compare";
   }
 
 }
