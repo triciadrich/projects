@@ -48,7 +48,12 @@ form {
   justify-content: center;
   padding-bottom: 30px;
 }
-
+@media screen and (max-width: 600px) {
+  .loginreg {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .detailtop {
   width: 100%;
   display: flex;
@@ -74,6 +79,17 @@ form {
   display: flex;
   flex-direction: row;
   margin-right: 20px;
+}
+@media screen and (max-width: 480px) {
+  .detailcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detailimg{
+    margin-bottom: 20px;
+  }
 }
 
 .mobilenav {
@@ -109,7 +125,7 @@ form {
     align-items: center;
   }
 
-  .comparecontainer{
+  .comparecontainer {
     width: 100%;
   }
 }

@@ -18,13 +18,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
    <!--Import Google Icon Font-->
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <title>Document</title>
+  <title>Login|Register</title>
 </head>
 <body>
   <div class="wrapper">
   <nav>
     <div class="deep-purple nav-wrapper">
-      <a href="/" class="brand-logo">Solace in Planning </a>
+      <a href="/" class="brand-logo"><h5 class="flow-text">Solace in Planning</h5> </a>
       
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 
@@ -41,6 +41,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <input id="search" type="search" required>
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
+      </div>
+      <div class="container hide-on-med-and-up show-on-medium-and-down">
+        <ul id="nav-mobile">
+        <li><a href="/account">Account</a></li>
+        <li><a href="/loginreg">Login|Register</a></li>
+        <li><a href="/logout">Logout</a></li>
+        </ul>
       </div>
     </form>
     <div class="loginreg">

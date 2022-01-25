@@ -29,14 +29,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
      $('select').material_select();
   });
 </script>
-  <title>Document</title>
+  <title>Edit</title>
 </head>
 
 <div class="wrapper">
   
     <nav>
       <div class="deep-purple nav-wrapper">
-        <a href="/" class="brand-logo">Solace in Planning </a>
+        <a href="/" class="brand-logo"><h5 class="flow-text">Solace in Planning</h5> </a>
         
         <ul id="nav-mobile" class="right hide-on-med-and-down">
   
@@ -54,7 +54,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>
-        
+        <div class="container hide-on-med-and-up show-on-medium-and-down">
+          <ul id="nav-mobile">
+          <li><a href="/account">Account</a></li>
+          <li><a href="/loginreg">Login|Register</a></li>
+          <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
         <form:form method="POST" action="/edit/${planner.id}" modelAttribute="planner">
         <p>
         	<form:label path="name">Name</form:label>

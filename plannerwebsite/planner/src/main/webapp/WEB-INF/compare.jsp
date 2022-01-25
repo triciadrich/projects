@@ -32,7 +32,7 @@ uri="http://www.springframework.org/tags/form"%>
       media="screen,projection"
     />
 
-    <title>Document</title>
+    <title>Compare</title>
   </head>
   <body>
     <nav>
