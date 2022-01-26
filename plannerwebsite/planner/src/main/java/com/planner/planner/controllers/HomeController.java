@@ -143,7 +143,12 @@ public class HomeController {
 
   @PostMapping("/compare/{id}")
   public String compare(@PathVariable("id") Long id) {
-
+    for(int i = 0; i < compare.size(); i++){
+      planner p = compare.get(i);
+      if (p.getId() == id){
+        return "redirect:/compare";
+      }
+    }
     compare.add(this.plannerService.getOnePlanner(id));
 
     return "redirect:/details/{id}";
