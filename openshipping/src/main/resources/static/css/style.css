@@ -1,0 +1,15 @@
+*{
+  margin: 0 auto;
+}
+
+.regWrapper{
+  margin: auto;
+  
+}
+
+.regForm{
+  margin-top: 30px;
+  width: 50%;
+  font-size: larger;
+}
+
