@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -34,6 +35,8 @@ public class User {
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Item> items;   
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "users_roles", 
@@ -93,6 +96,12 @@ public class User {
     @PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();
+    }
+    public List<Item> getItems() {
+        return items;
+    }
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
   
 }
