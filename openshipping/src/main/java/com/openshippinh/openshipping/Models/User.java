@@ -19,6 +19,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.persistence.JoinColumn;
 
 
@@ -34,7 +35,7 @@ public class User {
     private String passwordConfirmation;
     @Column(updatable=false)
     private Date createdAt;
-    private Date updatedAt;
+    private Date updatedAt; 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Item> items;   
     @ManyToMany(fetch = FetchType.EAGER)
