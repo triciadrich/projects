@@ -26,7 +26,7 @@
       <div class="card-panel">
         <h3>Register User</h3>
       <form action="#" th:action="@{/registration}" method="post" th:object="${user}">
-        <label><span class="black-text large">Name:</span></label>
+        <label><span class="black-text large">Email</span></label>
         <input type="text" th:field="*{username}"/>
         <label>Password:</label>
         <input type="password" th:field="*{password}"/>

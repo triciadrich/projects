@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.openshippinh.openshipping.Models.Item;
+import com.openshippinh.openshipping.Models.User;
 import com.openshippinh.openshipping.repositories.ItemRepository;
 
 @Service
@@ -29,5 +30,10 @@ public class ItemService {
 
   public List<Item> findByUser(Long id){
     return this.iRepo.findByUser_id(id);
+  }
+
+  public void addUserToItem(User user, Item item){
+    item.setUser(user);
+    this.iRepo.save(item);  
   }
 }

@@ -9,21 +9,19 @@ public class Goal {
     private Date created;
     private Date estComp;
     private int percentComplete;
-    private String lifeArea;
-    private String userName;
+    private User user;
+    private LifeArea lifeArea;
 
-    public Goal() {
-    }
-
-    public Goal(int id, String name, Date created, Date estComp, int percentComplete, String lifeArea, String userName) {
+    public Goal(int id, String name, Date created, Date estComp, int percentComplete, User user, LifeArea lifeArea) {
         this.id = id;
         this.name = name;
         this.created = created;
         this.estComp = estComp;
         this.percentComplete = percentComplete;
+        this.user = user;
         this.lifeArea = lifeArea;
-        this.userName = userName;
     }
+
 
     public int getId() {
         return id;
@@ -65,19 +63,19 @@ public class Goal {
         this.percentComplete = percentComplete;
     }
 
-    public String getLifeArea() {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public LifeArea getLifeArea() {
         return lifeArea;
     }
 
-    public void setLifeArea(String lifeArea) {
+    public void setLifeArea(LifeArea lifeArea) {
         this.lifeArea = lifeArea;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 }
