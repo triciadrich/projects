@@ -2,6 +2,7 @@ package com.openshippinh.openshipping.services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.openshippinh.openshipping.Models.Item;
@@ -17,7 +18,7 @@ public class ItemService {
   }
 
   public List<Item> allItems(){
-    return iRepo.findAll();
+    return iRepo.findAll(Sort.by("status"));
   }
   
   public Item createItem(Item i){
@@ -26,6 +27,15 @@ public class ItemService {
 
   public Item getItem(Long id){
     return this.iRepo.findById(id).orElse(null);
+  }
+
+  public Item editItem(Item item){
+    return this.iRepo.save(item);
+  }
+
+  public String deleteItem(Long id){
+    this.iRepo.deleteById(id);
+    return "Item has been deleted";
   }
 
   public List<Item> findByUser(Long id){

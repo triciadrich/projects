@@ -108,5 +108,8 @@ public class Item {
     this.user = user;
   }
   
-  
+  @Override
+  public String toString(){
+    return "Item{id=" + id + ", type='" + type + "', pick up from='" + pickUpFrom + "', deliver to=" + deliverTo + "}";
+  }
 }

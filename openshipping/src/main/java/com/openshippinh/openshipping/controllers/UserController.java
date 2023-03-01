@@ -6,13 +6,14 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,14 +36,15 @@ public class UserController {
   @RequestMapping("/registration")
   public String registerForm(@Valid @ModelAttribute("user") User user) {
 
-    return "registerForm";
+    return "login";
   }
 
   @PostMapping("/registration")
   public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model,
       HttpSession session) {
     if (  (!user.getUsername().contains("oregonmetal.com") && !user.getUsername().contains("seaportsteel.com")) ||result.hasErrors()) {
-      return "registerForm";
+      model.addAttribute("error", "invalid registration please try again");
+      return "redirect:/login";
     }
     userService.saveWithUserRole(user);
     return "redirect:/login";
